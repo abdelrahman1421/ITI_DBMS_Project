@@ -1,10 +1,9 @@
 #!/bin/bash
 
-list_dbm ()
-{
+list_dbm (){
 
-ls ./DBMS/
+		ls  ./DBMS/
 
-}
+	}
 
 list_dbm

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+shopt -s extglob
+
 # Hello this will be our main file for DBMS project based on bash script
 
 messg="\n \t Welcome to DBMS based on bash script\n"
@@ -31,13 +33,18 @@ do
 
     read -p "Please select a choice: "
 
-        if [ $REPLY -eq 1 ]
+        
+        typeset -i REPLY=$REPLY
+
+        if [ $REPLY -eq 1 ] 
         then
-                echo "Create Database"
+                # Creating a new Database 
+                source ./create_dbms.sh
                 
         elif [ $REPLY -eq 2 ]
         then
-                echo "List Database"
+                # List all Databases
+                 source ./list_dbms.sh
                 
 
         elif [ $REPLY -eq 3 ]
@@ -51,12 +58,12 @@ do
 
                 case $rmdname in
 
-                    +[A-Za-z])
+                    +([A-Za-z]))
                         
-                            if [ -d $rmdname ]
+                            if [ -d ./DBMS/$rmdname ]
                             then
                         
-                                rm -r ./DBMS/$rmdname
+                                rm -rf ./DBMS/$rmdname
                                 echo "Done! $rmdname  database was Deleted.."
                         
                             else
@@ -65,7 +72,7 @@ do
                             ;;      
         
                     *)
-                    
+
                             echo "invalid Database name: "
                             ;;      
         
@@ -76,10 +83,14 @@ do
         then
                 exit
                 break
+
         else
                 
                 echo "Please select a number from the Menu" 
         fi
 
 done
+
+
+
 
