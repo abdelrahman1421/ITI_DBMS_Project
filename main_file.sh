@@ -4,7 +4,7 @@ shopt -s extglob
 
 # Hello this will be our main file for DBMS project based on bash script
 
-messg="\n \t Welcome to DBMS based on bash script\n"
+messg="\n \t Welcome to DBMS based on bash script"
 
 if [ -d DBMS ]
 then
@@ -39,17 +39,18 @@ do
         if [ $REPLY -eq 1 ] 
         then
                 # Creating a new Database 
-                source ./create_dbms.sh
+                source ./createDB.sh
                 
         elif [ $REPLY -eq 2 ]
         then
                 # List all Databases
-                 source ./list_dbms.sh
+                source ./listDBs.sh
                 
 
         elif [ $REPLY -eq 3 ]
         then
-                echo "Connect to Database"
+                # Connect to Database
+                source ./connectDB.sh
                 
 
         elif [ $REPLY -eq 4 ]
