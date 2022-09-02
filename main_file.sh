@@ -55,7 +55,7 @@ do
 
         elif [ $REPLY -eq 4 ]
         then
-                read -p " Enter Database name: " rmdname 
+                read -p "Enter Database name: " rmdname 
 
                 case $rmdname in
 
@@ -65,16 +65,16 @@ do
                             then
                         
                                 rm -rf ./DBMS/$rmdname
-                                echo "Done! $rmdname  database was Deleted.."
+                                echo -e "Done!!\n$rmdname  database was Deleted.."
                         
                             else
-                                echo "There is no Database with this name !!"
+                                echo -e "There is no Database with this name !!\n"
                             fi
                             ;;      
         
                     *)
 
-                            echo "invalid Database name: "
+                            echo -e "Invalid Database name!! \n"
                             ;;      
         
                 esac
