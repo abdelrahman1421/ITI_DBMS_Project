@@ -4,6 +4,7 @@ shopt -s extglob
 
 ####################### Create table ########################
 
+
 read -p "Table name: " tablename
 
                 case $tablename in
@@ -32,7 +33,7 @@ read -p "Table name: " tablename
                                 done
 
 
-
+                                primary_key="" 
                                 num=1   # set a Counter                              
                                 # Start point of the loop
                                 while [ $num -le $num_fields ]
@@ -56,26 +57,26 @@ read -p "Table name: " tablename
 
 
                                     # make some variables to define metadata and set primary key with "" value                                     
-                                      delimiter=":"
+                                      delimiter="\t"
                                       new_line="\n"
-                                      tab="\t"
-                                      primary_key=""                                      
+                                      tab="\t"                                                                           
                                       meta_data=$new_line"Field"$tab$delimiter$tab"Type"$tab$delimiter$tab"key"
 
-
+                                    
                                     # Check is there a primary key in the table or not
-                                    if [ "$primary_key" = "" ]   # if primary key=""
-                                    then
+
+                                    while [ "$primary_key" == "" ]   # if primary key=""
+                                    do
                                         echo -e "Do u want to make a Primary Key?"
 
                                         select answer in "yes" "no"
                                         do
                                             case $answer in
 
-                                            yes ) primary_key="pkset";meta_data=$new_line$field_name$tab$delimiter$tab$field_type$tab$delimiter$tab$primary_key;
+                                            yes ) primary_key="PKset";meta_data=$new_line$field_name$tab$delimiter$tab$field_type$tab$delimiter$tab$primary_key;
                                             break;;
 
-                                            no ) meta_data=$new_line$field_name$tab$delimiter$tab$field_type$tab$delimiter$tab"";
+                                            no ) primary_key="";meta_data=$new_line$field_name$tab$delimiter$tab$field_type$tab$delimiter$tab$primary_key;
                                             break;;
                                             * ) echo "invalid answer" ;;
 
@@ -84,16 +85,12 @@ read -p "Table name: " tablename
                                         done
 
 
-                                    else    # if there is primary key in the table
-
-                                            echo "error! u already have a Primary Key in the table"
-                                            meta_data=$new_line$field_name$tab$delimiter$tab$field_type$tab$delimiter$tab""
                                     
-                                    fi
+                                    done
                                     
-
-                                    
-                                    myarray[$num]=$new_line$field_name$tab$delimiter$tab$field_type$tab$delimiter$tab$primary_key                              
+                                        myarray[$num]=$new_line$field_name$tab$delimiter$tab$field_type$tab$delimiter$tab$primary_key
+                                        primary_key="\t"
+                                                                    
 
                                     ((num++))
 
@@ -116,7 +113,7 @@ read -p "Table name: " tablename
                                 done
                                
 
-                                awk '(NR>3)' meta_$tablename | awk  '{ printf( "%s ", $1 ); } END { printf( "\n" ); }' > $tablename 
+                                awk '(NR>3)' meta_$tablename | awk '(NR>3)' meta_$tablename | awk  'BEGIN{print "\n"} { printf( "%s ", $1 ) } END { print "\n\n" }' > $tablename 
 
                                 if [ $? -eq 0 ]
                                 then
