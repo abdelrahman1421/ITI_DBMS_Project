@@ -5,7 +5,7 @@ shopt -s extglob
 ####################### Create table ########################
 
 
-read -p "Table name: " tablename
+read -p "table name: " tablename
 
                 case $tablename in
 
@@ -57,13 +57,13 @@ read -p "Table name: " tablename
 
 
                                     # make some variables to define metadata and set primary key with "" value                                     
-                                      delimiter="\t"
+                                      
                                       new_line="\n"
-                                      tab="\t"                                                                           
-                                      meta_data=$new_line"Field"$tab$delimiter$tab"Type"$tab$delimiter$tab"key"
+                                      seperator=":"                                                                           
+                                      meta_data="field"$seperator"type"$seperator"key"
 
                                     
-                                    # Check is there a primary key in the table or not
+                                    # Check is there a primary key in the seperatorle or not
 
                                     while [ "$primary_key" == "" ]   # if primary key=""
                                     do
@@ -73,10 +73,10 @@ read -p "Table name: " tablename
                                         do
                                             case $answer in
 
-                                            yes ) primary_key="PKset";meta_data=$new_line$field_name$tab$delimiter$tab$field_type$tab$delimiter$tab$primary_key;
+                                            yes ) primary_key="PKset";meta_data=$new_line$field_name$seperator$field_type$seperator$primary_key;
                                             break;;
 
-                                            no ) primary_key="";meta_data=$new_line$field_name$tab$delimiter$tab$field_type$tab$delimiter$tab$primary_key;
+                                            no ) primary_key="";meta_data=$new_line$field_name$seperator$field_type$seperator$primary_key;
                                             break;;
                                             * ) echo "invalid answer" ;;
 
@@ -88,7 +88,7 @@ read -p "Table name: " tablename
                                     
                                     done
                                     
-                                        myarray[$num]=$new_line$field_name$tab$delimiter$tab$field_type$tab$delimiter$tab$primary_key
+                                        myarray[$num]=$field_name$seperator$field_type$seperator$primary_key
                                         primary_key="\t"
                                                                     
 
@@ -104,7 +104,7 @@ read -p "Table name: " tablename
                                 touch $tablename
                                 touch meta_$tablename
 
-                                echo -e $new_line"Field"$tab$delimiter$tab"Type"$tab$delimiter$tab"key" >> meta_$tablename
+                                echo -e "field"$seperator"type"$seperator"key" >> meta_$tablename
                                 
                                 for i in ${myarray[*]}
                                 do
@@ -112,8 +112,10 @@ read -p "Table name: " tablename
                                     
                                 done
                                
+                                awk '(NR>1)' meta_$tablename | cut -d ":" -f 1 | awk  '{ printf "%s:",$1 }' > $tablename 
+                                echo "" >> $tablename
 
-                                awk '(NR>3)' meta_$tablename | awk '(NR>3)' meta_$tablename | awk  'BEGIN{print "\n"} { printf( "%s ", $1 ) } END { print "\n\n" }' > $tablename 
+
 
                                 if [ $? -eq 0 ]
                                 then
