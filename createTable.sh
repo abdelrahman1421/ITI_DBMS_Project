@@ -9,7 +9,7 @@ read -p "table name: " tablename
 
                 case $tablename in
 
-                    +([A-Za-z]))
+                    +([A-Za-z0-9]))
                         
                             if [ -f ./$tablename ]
                             then                       
@@ -73,7 +73,11 @@ read -p "table name: " tablename
                                         do
                                             case $answer in
 
+<<<<<<< HEAD
                                             yes ) primary_key="PKset";meta_data=$new_line$field_name$seperator$field_type$seperator$primary_key;
+=======
+                                            yes ) primary_key="pk";meta_data=$new_line$field_name$tab$delimiter$tab$field_type$tab$delimiter$tab$primary_key;
+>>>>>>> 3ed3cfd (one step left in select)
                                             break;;
 
                                             no ) primary_key="";meta_data=$new_line$field_name$seperator$field_type$seperator$primary_key;

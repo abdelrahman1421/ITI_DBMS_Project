@@ -1,7 +1,17 @@
 #!/bin/bash
 
 typeset -i count=0
+read -p "Enter the table name: " t_name
+echo -e "\n"
 
+ cat $t_name 2> /dev/null 1> /dev/null 
+
+function selecetFromTable () {
+if [ $? == 0 ]
+    then 
+    while true
+    do
+         
 echo -n "
 
     =============(Select Menu)====================
@@ -18,22 +28,19 @@ echo -n "
     |                                            |
     ==============================================
 "
-while true
-do
-
-    read -p "Please select a choice: "
-
-        
+        read -p "Please select a choice: "
         typeset -i REPLY=$REPLY
 
         if [ $REPLY -eq 1 ] 
         then
-                echo Select all cloumns
+                cat $t_name
 
         elif [ $REPLY -eq 2 ]
         then
                
-                echo Select specific column
+                read -p "ENter the column name: " c_name
+                tnum=`head -3 abdo | tr -s ' ' '\n' | nl -nln |  grep "$c_name" | cut -f1`
+                awk -v var=$tnum '{ print $var}' $t_name
 
         elif [ $REPLY -eq 3 ]
         then
@@ -45,7 +52,10 @@ do
 
         elif [ $REPLY -eq 5 ]
         then
-                echo Back to Home Menu
+                cd ../..
+                source /home/abdo/project/connectDB.sh
+                exit
+                break
         
         elif [ $REPLY -eq 6 ]  
         then
@@ -63,31 +73,13 @@ do
                         echo "Please select a number from the Menu" 
                 fi
         fi
-
-
 done
+    else
+        echo this table not found.
 
-selectalltable () 
-{
+        exit
+        break
+    fi
+} 
 
-read -p "Enter the table name" tbale_name
-cat $tableName 
-if [[ $? != 0]]
-then
-        echo "Something error"
-fi
-# add select menu function here
-
-}
-
-selectcolumn () 
-{
-
-read -p "Enter the table name" tbale_name
-echo -e "\n"
-read -p "Enter the cloumn num" column_num
-awk '{print "$column_num"}'
-
-# add select menu function here
-
-}
+selecetFromTable

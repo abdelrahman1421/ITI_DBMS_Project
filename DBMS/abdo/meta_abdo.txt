@@ -1,0 +1,8 @@
+
+Field			Type			key
+
+id			int			PKset
+
+name			str				
+
+address			str				

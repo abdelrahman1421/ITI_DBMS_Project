@@ -1,7 +1,7 @@
 #!/bin/bash
 
 shopt -s extglob
-
+pwd
 read -p "Enter Database name: " database
 
 messg="\n\t\tYou're in $database database" 
@@ -14,7 +14,7 @@ then
     
 
         echo -n "
-    ====================(Menu)====================
+    ====================(Table Menu)==============
     |                                            |
     |                                            |
     | (1) Create Table                           |
@@ -42,11 +42,12 @@ then
                 then
                         # Creating a new table
                         echo "Creating a new table"
+                        source /home/abdo/project/createTable.sh
                         
                 elif [ $REPLY -eq 2 ]
                 then
                         # List all tables
-                        echo "List all tables"
+                        ls ./
                         
                         
                 elif [ $REPLY -eq 3 ]
@@ -65,8 +66,7 @@ then
                 then
                         # Select from table
                         echo "Select from Table"
-
-
+                        source /home/abdo/project/selectfromtable.sh
 
                 elif [ $REPLY -eq 6 ]
                 then
