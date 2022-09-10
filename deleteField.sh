@@ -14,7 +14,7 @@ function deleteField ()
   echo --------------------------------------------------------------------------------------------------------
     echo ""
         column -t -s ":" $t_name
-        column -t -s ":" $t_name >> t_name_temp
+        
     echo ""
   echo --------------------------------------------------------------------------------------------------------
     echo ""
@@ -37,6 +37,7 @@ c_num=$(awk 'BEGIN{FS=":"}{if(NR==1){for(i=1;i<=NF;i++){if($i=="'$c_name'") prin
       #
     else
       NR=`awk 'BEGIN{FS=":"}{if ($'$c_num'=="'$val'") print NR}' $t_name 2>> /dev/null `
+      column -t -s ":" $t_name >> t_name_temp
       sed -i ''$NR'd' $t_name 2>> /dev/null
       column -t -s ":" $t_name >> t_name_temp1
       echo ""
