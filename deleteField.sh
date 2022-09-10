@@ -28,7 +28,7 @@ c_num=$(awk 'BEGIN{FS=":"}{if(NR==1){for(i=1;i<=NF;i++){if($i=="'$c_name'") prin
     #
     rm -rf t_name_temp
   else
-    echo -e "\nEnter any value in row to delete this row: \c"
+    echo -e "\nEnter any value in row you entered before this step to delete this row: \c"
     read val
     r_num=`awk 'BEGIN{FS=":"}{if ($'$c_num'=="'$val'") print $'$c_num'}' $t_name 2>> /dev/null`
     if [[ $r_num == "" ]]
