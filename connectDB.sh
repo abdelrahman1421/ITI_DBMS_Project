@@ -13,21 +13,21 @@ then
     echo -e $messg
     
 
-        echo -n "
-    ====================(Table Menu)==============
-    |                                            |
-    |                                            |
-    | (1) Create Table                           |
-    | (2) List Table                             |
-    | (3) Drop Table                             |
-    | (4) Insert to Table                        |
-    | (5) Select from Table                      |
-    | (6) Delete from Table                      |
-    | (7) Update Table                           |
-    | (8) Exit                                   |
-    |                                            |
-    |                                            |
-    ==============================================
+               echo -n "
+    ################(table-menu)##################
+   ||                                            ||
+   ||                                            ||
+   || (1) Create Table                           ||
+   || (2) List Table                             ||
+   || (3) Drop Table                             ||
+   || (4) Insert to Table                        ||
+   || (5) Select from Table                      ||
+   || (6) Delete from Table                      ||
+   || (7) Update Table                           ||
+   || (8) Exit                                   ||
+   ||                                            ||
+   ||                                            ||
+     #############################################
 "
 
         while true
