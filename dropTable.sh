@@ -1,21 +1,25 @@
 #!/bin/bash
 
-
-	read -p "Please enter the database name you want to Drop: " drop_db_name
-
+dir=`pwd`
 
 
-    if [ -d ./DBMS/$drop_db_name ]
+dp_name=`pwd | rev | awk -F '/' '{ print $1}' | rev`
+
+read -p "Please enter the tbale name you want to Drop: " drop_table_name
+
+
+
+    if [ -f $dir/$drop_table_name ]
   	then 
 
         while true
         do
 
                             echo -n -e "
-             #############(Drop Database)###############
+             ###############(Drop Table)###############
            ||                                          ||
            ||                                          ||
-           || (1) Cofirm dropping '$drop_db_name'      ||
+           || (1) Cofirm dropping '$drop_table_name'   
            || (2) Cancel                               ||
            ||                                          ||
            ||                                          ||
@@ -27,17 +31,17 @@
 
             if [ $rep -eq 1 ] 
             then
-                    rm -rf ./DBMS/$drop_db_name
+                    rm -rf $dir/$drop_table_name
                     echo "----------------------------------------------"
-                    echo -e "Database was successfully dropped."
+                    echo -e "Table was successfully dropped."
                     echo "----------------------------------------------"
 
             elif [ $REPLY -eq 2 ]
             then
                          echo "-----------------------------------------"
-                         echo -e "Drop database was canceled."
+                         echo -e "Drop Table was canceled."
                          echo "-----------------------------------------"
-			 
+                        
 			 
 
             else
@@ -55,17 +59,16 @@
         
     else
             echo "--------------------------------"
-            echo -e "Database not found."
+            echo -e "Table not found."
             echo "--------------------------------"
 
             
 
 fi
-
-
-sleep 3
+sleep 2
+cd ../..
 clear
-source ../main.sh
+source ./main.sh
 
 
 

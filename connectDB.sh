@@ -14,21 +14,22 @@ then
     
 
                echo -n "
-    ################(table-menu)##################
+    ################(Table Menu)##################
    ||                                            ||
    ||                                            ||
    || (1) Create Table                           ||
    || (2) List Table                             ||
    || (3) Drop Table                             ||
-   || (4) Insert to Table                        ||
-   || (5) Select from Table                      ||
-   || (6) Delete from Table                      ||
+   || (4) Insert To Table                        ||
+   || (5) Select From Table                      ||
+   || (6) Delete From Table                      ||
    || (7) Update Table                           ||
-   || (8) Exit                                   ||
+   || (8) Back To Main Menu                      ||
    ||                                            ||
    ||                                            ||
      #############################################
-"
+ "
+ echo ""
 
         while true
         do
@@ -53,7 +54,7 @@ then
                 elif [ $REPLY -eq 3 ]
                 then
                         # Drop table
-                        source  ../../dropDB.sh
+                        source  ../../dropTable.sh
                         
 
                 elif [ $REPLY -eq 4 ]
@@ -87,10 +88,8 @@ then
 
                 elif [ $REPLY -eq 8 ]
                 then
-
-                              
-                        break
-                        
+   
+                        break 
                         
                 else
                         

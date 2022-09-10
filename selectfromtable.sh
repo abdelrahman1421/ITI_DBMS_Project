@@ -52,20 +52,20 @@ do
          
 echo -n "
 
-    =============(Select Menu)====================
-    |                                            |
-    |                                            |
-    |  (1) Select all cloumns                    |
-    |  (2) Select specific column      
-    |  (3) Select from table with condition      |
-    |  (4) Back to Table Menu                    |
-    |  (5) Back to Home Menu                     |
-    |  (6) Exit                                  |
-    |                                            |
-    |                                            |
-    |                                            |
-    ==============================================
+     ###############(Select Menu)################
+    ||                                           ||
+    ||                                           ||
+    ||  (1) Select all cloumns                   ||
+    ||  (2) Select specific column     
+    ||  (3) Select from table with condition     ||
+    ||  (4) Back to Table Menu                   ||
+    ||  (5) Back to Main Menu                    ||
+    ||  (6) Exit                                 ||
+    ||                                           ||
+    ||                                           ||
+     ############################################
 "
+echo ""
         read -p "Please select a choice: "
         typeset -i REPLY=$REPLY
 
@@ -90,13 +90,13 @@ echo -n "
         then
                 cd ../..
                 clear
-                source /home/abdo/project/connectDB.sh
+                source ./connectDB.sh
 
-        elif [ $REPLY -eq 5]
+        elif [ $REPLY -eq 5 ]
         then
                 cd ../..
                 clear
-                source /home/abdo/project/main_file.sh
+                source ./main.sh
                 exit
                 break
         
