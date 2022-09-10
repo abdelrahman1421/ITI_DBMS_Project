@@ -10,7 +10,7 @@ function updateTable ()
       echo -e "\nTable not found \n"
   else
   echo ""
-  echo -e "             <<< The table column as following you enter the name of any one >> \n"
+  echo -e "             <<< The table column as following you enter the name of any one >>> \n"
   echo --------------------------------------------------------------------------------------------------------
     echo ""
         head -1 $t_name | column -t -s ":"
@@ -64,6 +64,9 @@ function updateTable ()
         NR=`awk 'BEGIN{FS=":"}{if ($'$c_num' == "'$val'") print NR}' $t_name 2>>/dev/null`
         old_val=`awk 'BEGIN{FS=":"}{if(NR=='$NR'){for(i=1;i<=NF;i++){if(i=='$colu_num') print $i}}}' $t_name 2>> /dev/null`
         sed -i ''$NR's/'$old_val'/'$new_val'/g' $t_name 2>>/dev/null
+        echo ""
+        echo -e "             <<< The row content before and after updating >>> \n"
+        echo -e "           <<< on th LEFT "OLD ONE" on the RIGHT "UPDATED VALUE">>> \n"
         echo --------------------------------------------------------------------------------------------------------
         echo ""
                 head -1 $t_name >> tem_data

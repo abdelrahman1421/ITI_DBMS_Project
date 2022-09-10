@@ -71,7 +71,8 @@ then
                 elif [ $REPLY -eq 6 ]
                 then
                         # Delete from table
-                        echo "Delete from Table"
+                        
+                        source /home/abdo/project/deleteField.sh
 
   
   
