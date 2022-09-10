@@ -1,29 +1,40 @@
 #!/bin/bash
 
-create_dbm () {
-		read -p "Please enter Database name: " db_name
-		chdb=` echo $db_name | tr -d "[:space:]" `		#this command is to remove spaces form entered name from user#
-		echo $chdb
-		
-		check=` find ./DBMS -type d -name $chdb `
+shopt -s extglob
 
-		if [[ "$chdb" != *[!a-zA-Z]* ]]
-		then
-			echo not valid
-		fi
 
-		if [ "$check" = "./DBMS/$chdb" ]
+
+
+
+read -p "Please enter Database name: " db_name
+name_handle=` echo $db_name | tr -d "[:space:]" `	
+
+case $name_handle in
+
+    +([A-Za-z]))
+
+
+		if [ -d ./DBMS/"$name_handle" ]
 		then
-       			 echo -e "erorr! $chdb is already exist. \n" 
+				echo -e "erorr! ($name_handle) is already exist. \n"
+					source	./createDB.sh
 		else
 
-       			mkdir ./DBMS/$chdb
+				mkdir ./DBMS/$name_handle
 
-        		echo -e "Database $chdb created successfulty. \n"
+				echo -e "Database ($name_handle) created successfulty. \n"
 
-		fi
-}
+		fi          
 
-create_dbm
+		  ;;
+	*)
+		echo "invalid Database name !!"
+		source ./createDB.sh
+
+          ;;
+esac
+
+	
+
 
 

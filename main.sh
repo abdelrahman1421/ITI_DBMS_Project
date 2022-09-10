@@ -56,30 +56,7 @@ do
         elif [ $REPLY -eq 4 ]
         then
                 # Remove Database
-                read -p " Enter Database name: " rmdname 
-
-                case $rmdname in
-
-                    +([A-Za-z]))
-                        
-                            if [ -d ./DBMS/$rmdname ]
-                            then
-                        
-                                rm -rf ./DBMS/$rmdname
-                                echo "Done! $rmdname  database was Deleted.."
-                        
-                            else
-                                echo "There is no Database with this name !!"
-                            fi
-                            ;;      
-        
-                    *)
-
-                            echo "invalid Database name: "
-                            ;;      
-        
-                esac
-                
+                source ./dropDB.sh
 
         elif [ $REPLY -eq 5 ]
         then

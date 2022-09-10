@@ -1,0 +1,5 @@
+field:type:key
+id:int:pk
+name:str:	
+age:int:	
+address:str:	

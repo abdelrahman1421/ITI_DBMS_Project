@@ -1,7 +1,7 @@
 #!/bin/bash
 
 shopt -s extglob
-pwd
+
 read -p "Enter Database name: " database
 
 messg="\n\t\tYou're in $database database" 
@@ -41,8 +41,8 @@ then
                 if [ $REPLY -eq 1 ] 
                 then
                         # Creating a new table
-                        echo "Creating a new table"
-                        source /home/abdo/project/createTable.sh
+                       
+                        source ../../createTable.sh
                         
                 elif [ $REPLY -eq 2 ]
                 then
@@ -53,34 +53,35 @@ then
                 elif [ $REPLY -eq 3 ]
                 then
                         # Drop table
-                        echo "Drop table"
+                        source  ../../dropDB.sh
                         
 
                 elif [ $REPLY -eq 4 ]
                 then
                       # Insert to table
-                      echo "Insert to Table"
+                      
+		        source ../../insertIntoTable.sh
 
 
                 elif [ $REPLY -eq 5 ]
                 then
                         # Select from table
-                        echo "Select from Table"
-                        source /home/abdo/project/selectfromtable.sh
+                        
+                        source ../../selectfromtable.sh
 
                 elif [ $REPLY -eq 6 ]
                 then
                         # Delete from table
                         
-                        source /home/abdo/project/deleteField.sh
+                        source ../../deleteField.sh
 
   
   
                 elif [ $REPLY -eq 7 ]
                 then
                         # update table
-                        echo "Update Table"
-                        source /home/abdo/project/updateTable.sh
+                        
+                        source ../../updateTable.sh
 
 
 
@@ -99,7 +100,7 @@ then
         done
 
          cd ../../
-         source ./main_file.sh  
+         source ./main.sh  
 
 else
     

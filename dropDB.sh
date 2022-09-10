@@ -1,61 +1,73 @@
 #!/bin/bash
 
-dorpDB()
-{
-read -p "Please enter the database name you want to drop: " drop_db_name
+
+	read -p "Please enter the database name you want to Drop: " drop_db_name
 
 
-search_drop_db_name=`find ./DBMS/ -type f -name $drop_db_name | rev | awk -F'/' '{ print $1 }' | rev`
-db_path=`find ./DBMS/ -type f -name $drop_db_name`
 
-if [ "$drop_db_name" = "$search_drop_db_name" ]
-    then 
-      echo -n -e "
-       ====================(Drop)=================
-      |                                           |
-      |                                           |
-      | (1) Cofirm dropping '$search_drop_db_name'  
-      | (2) Cancel                                |
-      |                                           |
-      |                                           |
-       ===========================================  \n\n"
+    if [ -d ./DBMS/$drop_db_name ]
+  	then 
 
         while true
-            do
+        do
 
-             read -p "Please confirm that action or cancel droping: " 
+                            echo -n -e "
+             #############(Drop Database)###############
+           ||                                          ||
+           ||                                          ||
+           || (1) Cofirm dropping '$drop_db_name'      ||
+           || (2) Cancel                               ||
+           ||                                          ||
+           ||                                          ||
+             ##########################################  \n\n"
+
+            read -p "Please confirm that action or cancel droping: " 
                 
-             typeset -i rep=$REPLY
+            typeset -i rep=$REPLY
+
             if [ $rep -eq 1 ] 
-                then
-                    rm -r $db_path
-                    echo "------------------------------------------------------------------------------"
-                    echo -e "\nDatabase was successfully dropped.\n"
-                    echo "------------------------------------------------------------------------------"
-                elif [ $REPLY -eq 2 ]
-                    then
-                         echo "------------------------------------------------------------------------------"
-                         echo -e "\nDrop database was canceled.\n"
-                         echo "------------------------------------------------------------------------------"
-                else
-                    echo "------------------------------------------------------------------------------"
-                    echo -e "Please select a number from the Menu.\n"
-                    echo "------------------------------------------------------------------------------"
+            then
+                    rm -rf ./DBMS/$drop_db_name
+                    echo "----------------------------------------------"
+                    echo -e "Database was successfully dropped."
+                    echo "----------------------------------------------"
+
+            elif [ $REPLY -eq 2 ]
+            then
+                         echo "-----------------------------------------"
+                         echo -e "Drop database was canceled."
+                         echo "-----------------------------------------"
+			 
+			 
+
+            else
+                    echo "----------------------------------------------"
+                    echo -e "Please select a number from the Menu."
+                    echo "----------------------------------------------"
+
+                    continue
             fi
 
             break
+
         done
 
         
     else
-            echo "------------------------------------------------------------------------------"
-            echo -e "\nDatabase not found.\n"
-            echo "------------------------------------------------------------------------------"
+            echo "--------------------------------"
+            echo -e "Database not found."
+            echo "--------------------------------"
+
+            
 
 fi
-}
 
-dorpDB
+
+sleep 3
+clear
+source ./main.sh
+
+
 
 
    

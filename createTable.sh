@@ -9,7 +9,7 @@ read -p "table name: " tablename
 
                 case $tablename in
 
-                    +([A-Za-z0-9]))
+                    +([A-Za-z]))
                         
                             if [ -f ./$tablename ]
                             then                       
@@ -73,7 +73,7 @@ read -p "table name: " tablename
                                         do
                                             case $answer in
 
-                                            yes ) primary_key="pk";meta_data=$new_line$field_name$tab$delimiter$tab$field_type$tab$delimiter$tab$primary_key;
+                                            yes ) primary_key="PKset";meta_data=$new_line$field_name$seperator$field_type$seperator$primary_key;
                                             break;;
 
                                             no ) primary_key="";meta_data=$new_line$field_name$seperator$field_type$seperator$primary_key;
@@ -114,7 +114,10 @@ read -p "table name: " tablename
                                
                                 awk '(NR>1)' meta_$tablename | cut -d ":" -f 1 | awk  '{ printf "%s:",$1 }' > $tablename 
                                 echo "" >> $tablename
-
+                               awk '(NR>1)' meta_$tablename | cut -d ":" -f 2 | awk '{printf "%s:", $1}' >> $tablename
+                               echo "" >> $tablename
+                               awk '(NR>1)' meta_$tablename | cut -d ":" -f 3 | awk '{printf "%s:", $1}' >> $tablename
+                               echo "" >> $tablename
 
 
                                 if [ $? -eq 0 ]
