@@ -79,6 +79,7 @@ then
                 then
                         # update table
                         echo "Update Table"
+                        source /home/abdo/project/updateTable.sh
 
 
 
