@@ -1,5 +1,6 @@
 field:type:key
-id:int:pk
+id:int:PKset
 name:str:	
-age:int:	
+email:str:	
 address:str:	
+phone:int:	

@@ -73,7 +73,7 @@ function updateTable ()
                 grep -w "$val" $t_name >> tem_data
                 column -t -s ":" tem_data >>dif_tem_data
                 column -t -s ":" tem_log >>dif_tem_log
-                pr -m -t dif_tem_log dif_tem_data
+                pr -m -W 150 -t dif_tem_log dif_tem_data
         echo ""
         echo ----------------------------------------------------------------
         echo "Row Updated Successfully"
