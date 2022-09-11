@@ -22,16 +22,27 @@ read -p "table name: " tablename
                                
                                 # take num.of fields from the user and ensure that is a number
                                 read -p "Enter number of Fields: " num_fields
-                                typeset -i num_fields=$num_fields                    # if the user insert a string this line will make it = 0            
+                                #typeset -i num_fields=$num_fields                    # if the user insert a string this line will make it = 0            
                                 
 
-                                # to ensure that the user didn't insert  0 or string
-                                while [ $num_fields -eq 0 ]
-                                do
-                                    echo -e "Error! you must enter a number \n"
-                                    read -p "Enter number of Fields: " num_fields
-                                done
 
+
+                                
+                                # check $num_fields is a special character or empty value or a string
+
+                                while [[ "$num_fields" =~ ['!`@#$%^&*()_+'] ]]  ||  [[ -z "$num_fields" ]] || [[ $num_fields = +([A-Za-z]) ]]; 
+                                do
+
+                                    echo -e "Error! you must enter a number \n"
+                                    read -p "Enter number of Fields: " num_fields  
+                                    
+                                done
+                        
+
+
+
+                                
+ 
 
                                 primary_key="" 
                                 num=1   # set a Counter                              
@@ -39,9 +50,16 @@ read -p "table name: " tablename
                                 while [ $num -le $num_fields ]
                                 do
 
-                                    # take field name from the user                                     
-                                    read -p "Name of field no.$num: " field_name
-                                   
+                                    # take field name from the user   
+                                     read -p "Name of field no.$num: " field_name
+                                                 
+                                    while ! [[ $field_name = +([A-Za-z]) ]];
+                                    do                   
+                                        echo "invalid field type !!"
+                                        read -p "Name of field no.$num: " field_name
+
+                                    done
+
                                    # Select the field type
                                     echo -e "Type of field $field_name:"
                                    
@@ -64,7 +82,6 @@ read -p "table name: " tablename
 
                                     
                                     # Check is there a primary key in the seperatorle or not
-
                                     while [ "$primary_key" == "" ]   # if primary key=""
                                     do
                                         echo -e "Do u want to make a Primary Key?"
@@ -73,23 +90,38 @@ read -p "table name: " tablename
                                         do
                                             case $answer in
 
-                                            yes ) primary_key="PKset";meta_data=$new_line$field_name$seperator$field_type$seperator$primary_key;
-                                            break;;
+                                            yes ) primary_key="PKset";
+                                                  meta_data=$new_line$field_name$seperator$field_type$seperator$primary_key;break;;
+                                            
+                                            no ) primary_key="no";
+                                                 meta_data=$new_line$field_name$seperator$field_type$seperator$primary_key;break;;
 
-                                            no ) primary_key="";meta_data=$new_line$field_name$seperator$field_type$seperator$primary_key;
-                                            break;;
-                                            * ) echo "invalid answer" ;;
-
+                                            * ) echo "invalid answer" 
+                                                    ;;
                                             esac
-
+                                            
+                                            
                                         done
 
-
-                                    
+                                                                        
                                     done
                                     
-                                        myarray[$num]=$field_name$seperator$field_type$seperator$primary_key
-                                        primary_key="\t"
+
+                                    if [ "$primary_key" == "no" ]
+                                    then
+                                            primary_key=""
+                                            myarray[$num]=$field_name$seperator$field_type$seperator$primary_key
+
+
+                                    elif [ "$primary_key" == "PKset" ]  
+                                    then
+                                            myarray[$num]=$field_name$seperator$field_type$seperator$primary_key
+                                            primary_key="\t"
+                                    
+                                              
+                                    fi
+                                            
+                                            
                                                                     
 
                                     ((num++))
@@ -112,12 +144,13 @@ read -p "table name: " tablename
                                     
                                 done
                                
+
                                 awk '(NR>1)' meta_$tablename | cut -d ":" -f 1 | awk  '{ printf "%s:",$1 }' > $tablename 
                                 echo "" >> $tablename
-                               #awk '(NR>1)' meta_$tablename | cut -d ":" -f 2 | awk '{printf "%s:", $1}' >> $tablename
-                               #echo "" >> $tablename
-                               #awk '(NR>1)' meta_$tablename | cut -d ":" -f 3 | awk '{printf "%s:", $1}' >> $tablename
-                               #echo "" >> $tablename
+                                #awk '(NR>1)' meta_$tablename | cut -d ":" -f 2 | awk '{printf "%s:", $1}' >> $tablename
+                                #echo "" >> $tablename
+                                #awk '(NR>1)' meta_$tablename | cut -d ":" -f 3 | awk '{printf "%s:", $1}' >> $tablename
+                                #echo "" >> $tablename
 
 
                                 if [ $? -eq 0 ]

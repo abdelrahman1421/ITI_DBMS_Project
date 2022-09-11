@@ -2,12 +2,8 @@
 
 shopt -s extglob
 
-
-
-
-
 read -p "Please enter Database name: " db_name
-name_handle=` echo $db_name | tr -d "[:space:]" `	
+name_handle=` echo $db_name | tr -d " " `	
 
 case $name_handle in
 

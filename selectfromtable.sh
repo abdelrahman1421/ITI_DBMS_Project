@@ -56,7 +56,7 @@ echo -n "
     ||                                           ||
     ||                                           ||
     ||  (1) Select all cloumns                   ||
-    ||  (2) Select specific column     
+    ||  (2) Select specific column               	||
     ||  (3) Select from table with condition     ||
     ||  (4) Back to Table Menu                   ||
     ||  (5) Back to Main Menu                    ||

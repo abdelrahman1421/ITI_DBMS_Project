@@ -1,6 +1,8 @@
 #!/bash/bin
+           
+
                                 echo -n "
-                        ################(Table Menu)##################
+                         ################(Table Menu)##################
                         ||                                            ||
                         ||                                            ||
                         || (1) Create Table                           ||
@@ -13,15 +15,15 @@
                         || (8) Back To Main Menu                      ||
                         ||                                            ||
                         ||                                            ||
-                        #############################################
+                         #############################################
                         "
                         echo ""
-
+                                
                                 read -p "($database)--> Please select a choice: "
 
                                 case $REPLY in
 
-                                        [1-8])                                             
+                                        [1-8])                                               primary_key=""   
                                                                                                
                                                                 
                                                                
@@ -31,12 +33,16 @@
                                                                         # Creating a new table
                                                                 
                                                                         source ../../createTable.sh
+                                                                        sleep 2
+                                                                        source ../../tableMenu.sh                                                                      
                                                                         
                                                                 elif [ $REPLY -eq 2 ]
                                                                 then
                                                                         # List all tables
                                                                         
                                                                         ls ./
+                                                                        sleep 2
+                                                                        source ../../tableMenu.sh
                                                                         
                                                                         
                                                                 elif [ $REPLY -eq 3 ]
@@ -44,6 +50,8 @@
                                                                         # Drop table
                                                                         
                                                                         source  ../../dropTable.sh
+                                                                        sleep 2
+                                                                        source ../../tableMenu.sh
                                                                         
 
                                                                 elif [ $REPLY -eq 4 ]
@@ -51,20 +59,24 @@
                                                                 # Insert to table
                                                                 
                                                                         source ../../insertIntoTable.sh
-
+                                                                        sleep 2
+                                                                        source ../../tableMenu.sh
 
                                                                 elif [ $REPLY -eq 5 ]
                                                                 then
                                                                         # Select from table
                                                                         
                                                                         source ../../selectfromtable.sh
+                                                                        sleep 2
+                                                                        source ../../tableMenu.sh
 
                                                                 elif [ $REPLY -eq 6 ]
                                                                 then
                                                                         # Delete from table
                                                                         
                                                                         source ../../deleteField.sh
-
+                                                                        sleep 2
+                                                                        source ../../tableMenu.sh
                                                 
                                                 
                                                                 elif [ $REPLY -eq 7 ]
@@ -72,14 +84,16 @@
                                                                         # update table
                                                                         
                                                                         source ../../updateTable.sh
+                                                                        sleep 2
+                                                                        source ../../tableMenu.sh
 
 
 
                                                                 elif [ $REPLY -eq 8 ]
                                                                 then
 
-                                                                        cd ../../
-                                                                        source ./main.sh                          
+                                                                        
+                                                                        source ../../main.sh                          
                                                                         
                                                                                                                         
                                                                 fi
@@ -93,8 +107,7 @@
                                         *)
 
                                                 echo "Please select a number from the Menu"
-                                                source ../../tableMenu.sh
-                                                                ;;
+
                                 esac
 
-                                
+
