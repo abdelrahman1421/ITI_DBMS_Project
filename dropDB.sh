@@ -65,7 +65,7 @@ fi
 
 sleep 3
 clear
-source ../main.sh
+source ./main.sh
 
 
 

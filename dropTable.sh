@@ -2,9 +2,8 @@
 
 dir=`pwd`
 
-
-dp_name=`pwd | rev | awk -F '/' '{ print $1}' | rev`
-
+echo $dir
+sleep 3
 read -p "Please enter the tbale name you want to Drop: " drop_table_name
 
 

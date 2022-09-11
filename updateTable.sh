@@ -11,11 +11,11 @@ function updateTable ()
   else
   echo ""
   echo -e "             <<< The table column as following you enter the name of any one >>> \n"
-  echo --------------------------------------------------------------------------------------------------------
+  echo --------------------------------------------
     echo ""
         head -1 $t_name | column -t -s ":"
     echo ""
-  echo --------------------------------------------------------------------------------------------------------
+  echo --------------------------------------------
     echo ""
   echo -e "Enter column name: \c"
   read c_name
@@ -33,13 +33,13 @@ function updateTable ()
         then
             echo ""
             echo "This current table content"
-            echo --------------------------------------------------------------------------------------------------------
+            echo --------------------------------------------
             echo ""
             head -1 $t_name >> tem_log
             grep -w "$val" $t_name >> tem_log
             column -t -s ":" tem_log
             echo ""
-            echo "--------------------------------------------------------------------------------------------------------"
+            echo --------------------------------------------
             echo ""
         else
           echo ""
@@ -65,9 +65,9 @@ function updateTable ()
         old_val=`awk 'BEGIN{FS=":"}{if(NR=='$NR'){for(i=1;i<=NF;i++){if(i=='$colu_num') print $i}}}' $t_name 2>> /dev/null`
         sed -i ''$NR's/'$old_val'/'$new_val'/g' $t_name 2>>/dev/null
         echo ""
-        echo -e "             <<< The row content before and after updating >>> \n"
-        echo -e "           <<< on th LEFT "OLD ONE" on the RIGHT "UPDATED VALUE">>> \n"
-        echo --------------------------------------------------------------------------------------------------------
+        echo -e "   <<< The row content before and after updating >>> \n"
+        echo -e "<<< on th LEFT "OLD ONE" on the RIGHT "UPDATED VALUE">>> \n"
+        echo ---------------------------------------------------------------
         echo ""
                 head -1 $t_name >> tem_data
                 grep -w "$val" $t_name >> tem_data
@@ -75,7 +75,7 @@ function updateTable ()
                 column -t -s ":" tem_log >>dif_tem_log
                 pr -m -t dif_tem_log dif_tem_data
         echo ""
-        echo --------------------------------------------------------------------------------------------------------
+        echo ----------------------------------------------------------------
         echo "Row Updated Successfully"
         rm -rf tem_data tem_log dif_tem_data dif_tem_log
  #tabel menu should placed here

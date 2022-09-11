@@ -1,7 +1,6 @@
 #!/bin/bash
 
 shopt -s extglob
-    
 # Hello this will be our main file for DBMS project based on bash script
 
 messg="\n \t Welcome to DBMS based on bash script"

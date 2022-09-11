@@ -114,10 +114,10 @@ read -p "table name: " tablename
                                
                                 awk '(NR>1)' meta_$tablename | cut -d ":" -f 1 | awk  '{ printf "%s:",$1 }' > $tablename 
                                 echo "" >> $tablename
-                               awk '(NR>1)' meta_$tablename | cut -d ":" -f 2 | awk '{printf "%s:", $1}' >> $tablename
-                               echo "" >> $tablename
-                               awk '(NR>1)' meta_$tablename | cut -d ":" -f 3 | awk '{printf "%s:", $1}' >> $tablename
-                               echo "" >> $tablename
+                               #awk '(NR>1)' meta_$tablename | cut -d ":" -f 2 | awk '{printf "%s:", $1}' >> $tablename
+                               #echo "" >> $tablename
+                               #awk '(NR>1)' meta_$tablename | cut -d ":" -f 3 | awk '{printf "%s:", $1}' >> $tablename
+                               #echo "" >> $tablename
 
 
                                 if [ $? -eq 0 ]
