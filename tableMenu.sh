@@ -23,7 +23,7 @@
 
                                 case $REPLY in
 
-                                        [1-8])                                               primary_key=""   
+                                        [1-8])                                                 
                                                                                                
                                                                 
                                                                
