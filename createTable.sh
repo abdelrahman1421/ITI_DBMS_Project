@@ -110,14 +110,14 @@ read -p "table name: " tablename
                                     if [ "$primary_key" == "no" ]
                                     then
                                             primary_key=""
-                                            myarray[$num]=$field_name$seperator$field_type$seperator$primary_key
+                                    fi
+
+                                    myarray[$num]=$field_name$seperator$field_type$seperator$primary_key
 
 
-                                    elif [ "$primary_key" == "PKset" ]  
+                                    if [ "$primary_key" == "PKset" ]  
                                     then
-                                            myarray[$num]=$field_name$seperator$field_type$seperator$primary_key
-                                            primary_key="\t"
-                                    
+                                            primary_key="\t"                                    
                                               
                                     fi
                                             
@@ -156,6 +156,8 @@ read -p "table name: " tablename
                                 if [ $? -eq 0 ]
                                 then
                                         echo "table is Created Successfully"
+                                        sleep 1
+                                        clear
                                             
                                 else
                                         echo "error! Creating table $tableName"

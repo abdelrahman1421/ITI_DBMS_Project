@@ -15,7 +15,7 @@
              #############(Drop Database)###############
            ||                                          ||
            ||                                          ||
-           || (1) Cofirm dropping '$drop_db_name'      ||
+           || (1) Cofirm dropping '$drop_db_name'               ||
            || (2) Cancel                               ||
            ||                                          ||
            ||                                          ||
